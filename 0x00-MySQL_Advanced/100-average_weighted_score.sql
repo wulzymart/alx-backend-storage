@@ -5,7 +5,6 @@ CREATE PROCEDURE ComputeAverageWeightedScoreForUser (user_id INT)
 BEGIN
     DECLARE total_weighted_score INT DEFAULT 0;
     DECLARE total_weight INT DEFAULT 0;
-    DECLARE average_score INT DEFAULT
 
     SELECT SUM(corrections.score * projects.weight)
         INTO total_weighted_score
@@ -30,5 +29,5 @@ BEGIN
             SET users.average_score = total_weighted_score / total_weight
             WHERE users.id = user_id;
     END IF;
-END; $$
+END $$
 DELIMITER ;
