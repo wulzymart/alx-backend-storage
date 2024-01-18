@@ -22,7 +22,7 @@ BEGIN
         WHERE corrections.user_id = user_id;
 
     IF total_weight != 0 THEN
-        SET average_score = total_weighted_score / total_weight
+        SET average_score = total_weighted_score / total_weight;
     END IF;
     UPDATE users
         SET users.average_score = average_score
