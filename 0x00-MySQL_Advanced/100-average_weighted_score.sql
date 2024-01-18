@@ -27,6 +27,5 @@ BEGIN
     UPDATE users
         SET users.average_score = average_score
         WHERE users.id = user_id;
-    END IF;
 END; $$
 DELIMITER ;
