@@ -30,5 +30,5 @@ BEGIN
             SET users.average_score = total_weighted_score / total_weight
             WHERE users.id = user_id;
     END IF;
-END $$
+END; $$
 DELIMITER ;
