@@ -3,8 +3,20 @@ DROP PROCEDURE IF EXISTS ComputeAverageScoreForUser;
 DELIMITER $$
 CREATE PROCEDURE ComputeAverageScoreForUser (user_id INT)
 BEGIN
+    DECLARE total_score INT DEFAULT 0;
+    DECLARE total_projects INT DEFAULT 0;
+
+    SELECT SUM(score)
+        INTO total_score
+        FROM corrections
+        WHERE corrections.user_id = user_id;
+    SELECT COUNT(*)
+        INTO total_projects
+        FROM corrections
+        WHERE corrections.user_id = user_id;
+
     UPDATE users
-	SET average_score = (SELECT AVG(score) FROM corrections WHERE user_id = userid)
-	WHERE id = userid;
+        SET users.average_score = IF(total_projects = 0, 0, total_score / total_projects)
+        WHERE users.id = user_id;
 END $$
 DELIMITER ;
