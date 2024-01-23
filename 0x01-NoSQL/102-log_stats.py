@@ -19,6 +19,7 @@ def nginx_log_printer(mongo_collection):
         {"method": "GET", "path": "/status"})
     print(f"{gets_count} status check")
 
+
 def nginx_top_ips_prnter(mongo_collection):
     '''prints to ips in requests'''
     print('IPs:')
@@ -39,6 +40,7 @@ def nginx_top_ips_prnter(mongo_collection):
         ip = log['_id']
         count = log['totalRequests']
         print('\t{}: {}'.format(ip, count))
+
 
 if __name__ == "__main__":
     mongo_collection = MongoClient('mongodb://127.0.0.1:27017').logs.nginx
