@@ -17,7 +17,7 @@ def log_nginx_stats(mongo_collection):
 
     gets_count = mongo_collection.count_documents(
         {"method": "GET", "path": "/status"})
-    print(f"{gets} status check")
+    print(f"{gets_count} status check")
 
 
 if __name__ == "__main__":
