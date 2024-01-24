@@ -22,7 +22,7 @@ def cache(function: Callable) -> Callable:
         result = redis.get(result_key)
         if result:
             redis.incr(count_key)
-            return result
+            return result.decode("utf-8")
         redis.set(count_key, 0)
         result = function(url)
         redis.setex(result_key, 10, result)
