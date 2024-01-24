@@ -66,10 +66,10 @@ def replay(fn: Callable):
 
 class Cache:
     """class of redis cache"""
-    async def  __init__(self):
+    def  __init__(self):
         """initialise the cache"""
         self._redis = Redis()
-        await self._redis.flushdb(True)
+        self._redis.flushdb(True)
 
     @call_history
     @count_calls
