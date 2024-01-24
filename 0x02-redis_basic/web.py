@@ -15,7 +15,6 @@ def cache(function: Callable) -> Callable:
     def fn(url):
         """caches a url"""
         redis = Redis()
-        redis.flushdb()
         count_key = f"count:{url}"
         result_key = f"result:{url}"
         print
