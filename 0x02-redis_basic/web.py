@@ -7,6 +7,7 @@ import requests
 from functools import wraps
 from typing import Callable
 
+
 def cache(function: Callable) -> Callable:
     """Decorator for cacing"""
 
@@ -20,7 +21,7 @@ def cache(function: Callable) -> Callable:
         print
 
         result = redis.get(result_key)
-        if result: 
+        if result:
             redis.incr(count_key)
             return result
         redis.set(count_key, 1)
@@ -28,6 +29,7 @@ def cache(function: Callable) -> Callable:
         redis.setex(result_key, 10, result)
         return result
     return fn
+
 
 @cache
 def get_page(url: str) -> str:
