@@ -17,7 +17,6 @@ def cache(function: Callable) -> Callable:
         redis = Redis()
         count_key = f"count:{url}"
         result_key = f"result:{url}"
-        print
 
         result = redis.get(result_key)
         if result:
