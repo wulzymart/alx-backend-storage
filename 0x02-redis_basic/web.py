@@ -24,7 +24,7 @@ def cache(function: Callable) -> Callable:
             redis.incr(count_key)
             return result
         redis.set(count_key, 1)
-        result = requests.get(url).text
+        result = function(url)
         redis.setex(result_key, 10, result)
         return result
     return fn
